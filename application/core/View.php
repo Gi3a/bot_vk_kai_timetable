@@ -6,18 +6,13 @@ class View {
 
 	public $path;
 	public $route;
-<<<<<<< HEAD
 	public $layout = 'default';
-=======
-	public $layout = 'console';
->>>>>>> 47dcd6f92d43d368c2ce76dffacfcb9d0f5f655d
 
 	public function __construct($route) {
 		$this->route = $route;
 		$this->path = $route['controller'].'/'.$route['action'];
 	}
 
-<<<<<<< HEAD
 	public function render($title, $vars = []) {
 		extract($vars);
 		$path = 'application/views/templates/'.$this->path.'.php';
@@ -34,8 +29,6 @@ class View {
 		exit;
 	}
 
-=======
->>>>>>> 47dcd6f92d43d368c2ce76dffacfcb9d0f5f655d
 	public static function errorCode($code) {
 		http_response_code($code);
 		$path = 'application/views/templates/errors/'.$code.'.php';
@@ -45,7 +38,6 @@ class View {
 		exit;
 	}
 
-<<<<<<< HEAD
 	public function message($status, $message) {
 		exit(json_encode(['status' => $status, 'message' => $message]));
 	}
@@ -59,6 +51,4 @@ class View {
 	}
 
 
-=======
->>>>>>> 47dcd6f92d43d368c2ce76dffacfcb9d0f5f655d
 }	

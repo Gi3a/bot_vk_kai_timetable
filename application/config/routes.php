@@ -1,23 +1,16 @@
 <?php
 
 return [
-<<<<<<< HEAD
 	// Requests
-=======
->>>>>>> 47dcd6f92d43d368c2ce76dffacfcb9d0f5f655d
 	'' => [
 		'controller' => 'main',
 		'action' => 'bot',
 	],
-<<<<<<< HEAD
 	// Test
-=======
->>>>>>> 47dcd6f92d43d368c2ce76dffacfcb9d0f5f655d
 	'test' => [
 		'controller' => 'main',
 		'action' => 'test',
 	],
-<<<<<<< HEAD
 	// Admin
 	'login'  => [
 		'controller' => 'admin',
@@ -51,7 +44,4 @@ return [
 		'controller' => 'admin',
 		'action' => 'exit',
 	],
-=======
-
->>>>>>> 47dcd6f92d43d368c2ce76dffacfcb9d0f5f655d
 ];

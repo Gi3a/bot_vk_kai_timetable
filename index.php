@@ -10,12 +10,8 @@ spl_autoload_register(function($class) {
         require $path;
     }
 });
-<<<<<<< HEAD
 
 session_start();
 
-=======
-session_start();
->>>>>>> 47dcd6f92d43d368c2ce76dffacfcb9d0f5f655d
 $router = new Router;
 $router->run();

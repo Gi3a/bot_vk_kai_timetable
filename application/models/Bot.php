@@ -57,7 +57,6 @@ class Bot extends Model {
 		return $this->db->column('SELECT role FROM bot_users WHERE user_id = :user_id', $params);
 	}
 
-<<<<<<< HEAD
 	public function getUserInfo($user_id)
 	{
 		$params = ['user_id' => $user_id];
@@ -80,8 +79,6 @@ class Bot extends Model {
 		$this->db->query('INSERT INTO bot_logs VALUES (:id, :user_id, :first_name, :last_name, :role, :course, :speciality, :query, :date_query)', $params);
 	}
 
-=======
->>>>>>> 47dcd6f92d43d368c2ce76dffacfcb9d0f5f655d
 	public function createUser($user_id, $role, $course, $speciality)
 	{
 		$user_vk = $this->getUserVK($user_id);
@@ -127,7 +124,6 @@ class Bot extends Model {
 		$this->db->query('UPDATE bot_users SET first_name = :first_name, last_name = :last_name WHERE user_id = :user_id', $params);
 	}
 
-<<<<<<< HEAD
 	public function updateUserRole($user_id, $role)
 	{
 		if (($role != "student") && ($role != "teacher") && ($role != "abiturient")) {$role = NULL;}
@@ -171,35 +167,12 @@ class Bot extends Model {
 				$speciality = 'Информатика и вычислительная техника';
 				break;
 			case '📊 Экономика':
-=======
-	public function updateUserCourse($user_id, $course)
-	{
-		if (($course != 1) && ($course != 2) && ($course != 3) && ($course != 4)){ $course = NULL; }
-		$params = [
-			'user_id' => $user_id,
-			'course' => $course
-		];
-		$this->db->query('UPDATE bot_users SET course = :course WHERE user_id = :user_id', $params);
-	}
-
-	public function updateUserSpeciality($user_id, $speciality)
-	{
-		switch ($speciality) {
-			case 'Приборостроение':
-				$speciality = 'Приборостроение';
-				break;
-			case 'Информатика и вычислительная техника':
-				$speciality = 'Информатика и вычислительная техника';
-				break;
-			case 'Экономика':
->>>>>>> 47dcd6f92d43d368c2ce76dffacfcb9d0f5f655d
 				$speciality = 'Экономика';
 				break;
 			default:
 				$speciality = NULL;
 				break;
 		}
-<<<<<<< HEAD
 		return $speciality;
 	}
 
@@ -230,15 +203,12 @@ class Bot extends Model {
 	public function updateUserSpeciality($user_id, $speciality)
 	{
 		$speciality = $this->switchSpeciality($speciality);
-=======
->>>>>>> 47dcd6f92d43d368c2ce76dffacfcb9d0f5f655d
 		$params = [
 			'user_id' => $user_id,
 			'speciality' => $speciality
 		];
 		$this->db->query('UPDATE bot_users SET speciality = :speciality WHERE user_id = :user_id', $params);
 	}
-<<<<<<< HEAD
 	/* --------------------- FAQ ----------------------------- */
 	public function getFaq($id)
 	{
@@ -300,47 +270,6 @@ class Bot extends Model {
 			];
 			return $this->db->row('SELECT subject, time, teacher, cabinet FROM bot_timetables WHERE (teacher LIKE :teacher) AND (weekday = :weekday) AND ((nom_denom = :nom_denom) OR (nom_denom = 2))', $params);
 		}
-=======
-
-	/* --------------------- TimeTables ----------------------------- */
-	public function getTimetables($id, $course, $speciality, $date, $nom_denom)
-	{
-		$user_id = $id;
-
-		if ($date == 'Сегодня' || $date == 'Завтра')
-		{
-			if ($date == "Сегодня") { $day = date("l"); }
-			else if ($date == "Завтра") { $day = date("l",strtotime("+1 day")); }
-			else {return (0);}
-			switch( $day )
-			{
-				case 'Monday': $weekday = 'Понедельник'; break;
-				case 'Tuesday': $weekday = 'Вторник'; break;
-				case 'Wednesday': $weekday = 'Среда'; break;
-				case 'Thursday': $weekday = 'Четверг'; break;
-				case 'Friday': $weekday = 'Пятница'; break;
-				case 'Saturday': $weekday = 'Суббота'; break;
-				case 'Sunday': $weekday = 'Воскресенье'; break;
-			}
-		}
-		else
-		{
-			if ($date == 'Понедельник') {$weekday = $date;}
-			else if ($date == 'Вторник') {$weekday = $date;}
-			else if ($date == 'Среда') {$weekday = $date;}
-			else if ($date == 'Четверг') {$weekday = $date;}
-			else if ($date == 'Пятница') {$weekday = $date;}
-			else if ($date == 'Суббота') {$weekday = $date;}
-			else {return (0);}
-		}
-		$params = [
-			'course' => $course,
-			'speciality' => $speciality,
-			'weekday' => $weekday,
-			'nom_denom' => intval($nom_denom),
-		];
-		return $this->db->row('SELECT subject, time, teacher, cabinet FROM bot_timetables WHERE (course = :course) AND (speciality = :speciality) AND (weekday = :weekday) AND ((nom_denom = :nom_denom) OR (nom_denom = 2))', $params);
->>>>>>> 47dcd6f92d43d368c2ce76dffacfcb9d0f5f655d
 	}
 
 	public function getNomDenom()
@@ -394,7 +323,6 @@ class Bot extends Model {
 					'one_time' => true,
 					'buttons'=> [
 						[
-<<<<<<< HEAD
 							$this->getBtn("Ⅰ курс", 'primary', 'set_course'),
 							$this->getBtn("Ⅱ курс", 'positive', 'set_course'),
 							$this->getBtn("Ⅲ курс", 'primary', 'set_course'),
@@ -406,16 +334,6 @@ class Bot extends Model {
 					]
 				];
 			$this->sendMessage($user_id, 'Выберите:', $keyboard);
-=======
-							$this->getBtn("1", 'primary', 'set_course'),
-							$this->getBtn("2", 'positive', 'set_course'),
-							$this->getBtn("3", 'primary', 'set_course'),
-							$this->getBtn("4", 'positive', 'set_course'),
-						]
-					]
-				];
-			$this->sendMessage($user_id, 'Выберите курс:', $keyboard);
->>>>>>> 47dcd6f92d43d368c2ce76dffacfcb9d0f5f655d
 		}
 
 	public function getKeyboardSpeciality($user_id)
@@ -424,15 +342,9 @@ class Bot extends Model {
 			'one_time' => true,
 			'buttons'=> 
 				[
-<<<<<<< HEAD
 					[$this->getBtn("⚙ Приборостроение", 'primary', 'set_speciality')],
 					[$this->getBtn("💻 Информатика и вычислительная техника", 'positive', 'set_speciality')],
 					[$this->getBtn("📊 Экономика", 'primary', 'set_speciality')],
-=======
-					[$this->getBtn("Приборостроение", 'primary', 'set_speciality')],
-					[$this->getBtn("Информатика и вычислительная техника", 'positive', 'set_speciality')],
-					[$this->getBtn("Экономика", 'primary', 'set_speciality')],
->>>>>>> 47dcd6f92d43d368c2ce76dffacfcb9d0f5f655d
 				]
 			];
 		$this->sendMessage($user_id, 'Выберите направление:', $keyboard);
@@ -444,7 +356,6 @@ class Bot extends Model {
 				'one_time' => false,
 				'buttons'=> [
 					[
-<<<<<<< HEAD
 						$this->getBtn("► Понедельник", 'primary', 'timetable_week_day'),
 						$this->getBtn("► Четверг", 'positive', 'timetable_week_day'),
 					],
@@ -457,26 +368,11 @@ class Bot extends Model {
 						$this->getBtn("► Суббота", 'positive', 'timetable_week_day'),
 					],
 					[$this->getBtn("▼ Вернуться", 'negative', 'back_to_student')],
-=======
-						$this->getBtn("Понедельник", 'primary', 'timetable_week_day'),
-						$this->getBtn("Вторник", 'positive', 'timetable_week_day'),
-					],
-					[
-						$this->getBtn("Среда", 'positive', 'timetable_week_day'),
-						$this->getBtn("Четверг", 'primary', 'timetable_week_day'),
-					],
-					[
-						$this->getBtn("Пятница", 'primary', 'timetable_week_day'),
-						$this->getBtn("Суббота", 'positive', 'timetable_week_day'),
-					],
-					[$this->getBtn("Вернуться", 'negative', 'back_to_student')],
->>>>>>> 47dcd6f92d43d368c2ce76dffacfcb9d0f5f655d
 				]
 			];
 		$this->sendMessage($user_id, 'Получить расписание:', $keyboard);
 	}
 
-<<<<<<< HEAD
 	public function getKeyboardAbiturient($user_id)
 	{
 		$keyboard = [
@@ -513,15 +409,12 @@ class Bot extends Model {
 			', $keyboard);
 	}
 
-=======
->>>>>>> 47dcd6f92d43d368c2ce76dffacfcb9d0f5f655d
 	public function getKeyboardStudent($user_id)
 	{
 		$keyboard = [
 				'one_time' => false,
 				'buttons'=> [
 					[
-<<<<<<< HEAD
 						$this->getBtn("▲ Сегодня", 'primary', 'timetable_week_day'),
 						$this->getBtn("► Завтра", 'positive', 'timetable_week_day'),
 						$this->getBtn("►► Неделю", 'primary', 'timetable_week'),
@@ -529,22 +422,12 @@ class Bot extends Model {
 					[
 						$this->getBtn("📚 Изменить курс", 'negative', 'change_course'),
 						$this->getBtn("🧭 Изменить направление", 'negative', 'change_speciality')
-=======
-						$this->getBtn("Сегодня", 'primary', 'timetable_week_day'),
-						$this->getBtn("Завтра", 'positive', 'timetable_week_day'),
-						$this->getBtn("Неделю", 'primary', 'timetable_week'),
-					],
-					[
-						$this->getBtn("Изменить курс", 'negative', 'change_course'),
-						$this->getBtn("Изменить направление", 'negative', 'change_speciality')
->>>>>>> 47dcd6f92d43d368c2ce76dffacfcb9d0f5f655d
 					],
 				]
 			];
 		$this->sendMessage($user_id, 'Получить расписание:', $keyboard);
 	}
 
-<<<<<<< HEAD
 	public function getKeyboardTeacher($user_id)
 	{
 		$keyboard = [
@@ -561,7 +444,5 @@ class Bot extends Model {
 	}
 
 
-=======
->>>>>>> 47dcd6f92d43d368c2ce76dffacfcb9d0f5f655d
 
 }
