@@ -184,8 +184,8 @@ class MainController extends Controller {
 											' _________________<br>'.
 											"[ ".$value['time']." ]<br>".
 											"▶ ".$value['subject']."<br>".
-											"✦ ".$value['teacher']."<br>"
-											//"[ ".$value['cabinet']." ]<br>"
+											"✦ ".$value['teacher']."<br>".
+											"[ ".$value['cabinet']." ]<br>"
 										, false);
 									}
 									else

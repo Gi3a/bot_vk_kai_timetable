@@ -20,11 +20,19 @@ return [
 		'controller' => 'admin',
 		'action' => 'panel',
 	],
+	'add/timetable'  => [
+		'controller' => 'admin',
+		'action' => 'add',
+	],
+	'delete/timetable/{id:\d+}'  => [
+		'controller' => 'admin',
+		'action' => 'delete',
+	],
 	'timetable'  => [
 		'controller' => 'admin',
 		'action' => 'timetable',
 	],
-	'timetable/{course:\d+}/{speciality:\w+}'  => [
+	'timetable/{weekday:\w+}'  => [
 		'controller' => 'admin',
 		'action' => 'timetable',
 	],
